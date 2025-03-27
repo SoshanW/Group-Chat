@@ -1,4 +1,4 @@
-package com.mycompany.group.chat.applicatoin;
+package com.mycompany.group.chat.application;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -37,7 +37,7 @@ public class Server {
             }
             
         }catch (IOException e) {
-            
+            e.printStackTrace();
         }
         
     }

@@ -1,4 +1,4 @@
-package com.mycompany.group.chat.applicatoin;
+package com.mycompany.group.chat.application;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,7 +32,7 @@ class ClientHandler implements Runnable{
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.clientUserName = bufferedReader.readLine();
             clientHandlers.add(this);
-            broadCastMessage ("SERVER: " + clientUserName + " has entered the chat!");
+            broadcastMessage ("SERVER: " + clientUserName + " has entered the chat!");
         }catch(IOException e){
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
@@ -56,7 +56,7 @@ class ClientHandler implements Runnable{
         }
     }
 
-    private void broadCastMessage(String messageToSend) {
+    private void broadcastMessage(String messageToSend) {
         for (ClientHandler clientHandler: clientHandlers){
             try{
                 if (!clientHandler.clientUserName.equals(clientUserName)){
@@ -72,7 +72,7 @@ class ClientHandler implements Runnable{
     
     private void removeClientHandler(){
         clientHandlers.remove(this);
-        broadCastMessage("SERVER: " + clientUserName + " has left the chat");
+        broadcastMessage("SERVER: " + clientUserName + " has left the chat");
     }
     
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter){
@@ -90,10 +90,6 @@ class ClientHandler implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void broadcastMessage(String messageFromClient) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

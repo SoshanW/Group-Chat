@@ -1,4 +1,4 @@
-package com.mycompany.group.chat.applicatoin;
+package com.mycompany.group.chat.application;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -91,5 +91,6 @@ public class Client {
         client.listenForMessage();
         client.sendMessage();
     }
+}
 
  
