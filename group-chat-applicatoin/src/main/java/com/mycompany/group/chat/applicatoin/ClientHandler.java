@@ -47,7 +47,7 @@ class ClientHandler implements Runnable{
         
         while(socket.isConnected()){
             try{
-                messageFromClient = buffereedReader.readLine();
+                messageFromClient = bufferedReader.readLine();
                 broadcastMessage(messageFromClient);
             }catch (IOException e){
                 closeEverything(socket, bufferedReader, bufferedWriter);
@@ -70,5 +70,30 @@ class ClientHandler implements Runnable{
         }
     }
     
+    private void removeClientHandler(){
+        clientHandlers.remove(this);
+        broadCastMessage("SERVER: " + clientUserName + " has left the chat");
+    }
+    
+    public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter){
+        removeClientHandler();
+        try {
+            if (bufferedReader != null){
+                bufferedReader.close();
+            }
+            if (bufferedWriter != null) {
+                bufferedWriter.close();
+            }
+            if (socket != null) {
+                socket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void broadcastMessage(String messageFromClient) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
