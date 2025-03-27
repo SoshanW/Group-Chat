@@ -64,6 +64,8 @@ class ClientHandler implements Runnable{
                     clientHandler.bufferedWriter.newLine();
                     clientHandler.bufferedWriter.flush();
                 }
+            }catch(IOException e){
+                closeEverything(socket, bufferedReader, bufferedWriter);
             }
         }
     }
